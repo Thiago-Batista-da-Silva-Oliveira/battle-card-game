@@ -1,0 +1,118 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #222;
+  color: #fff;
+}
+
+.player-area,
+.opponent-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 50%; /* Cada área ocupa 50% da tela */
+  width: 100%;
+  background-color: #2c3e50;
+}
+
+.divider {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  background-color: #2c3e50;
+  width: 100%
+}
+
+.zone {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #34495e;
+  border: 1px solid #fff;
+  margin: 5px;
+  position: relative;
+}
+
+.zone .icon {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+
+.hand-zone {
+  padding: 10px 0px
+}
+
+.hand-zone .deck {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.life-points {
+  display: flex;
+  align-items: center;
+  right: 10px;
+  gap: 5px;
+  position: absolute;
+  bottom: 5px;
+}
+
+.card-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card-thumbnail img {
+  width: 60px;
+  height: 70px;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+.modal {
+  width: 300px;
+  margin: auto;
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 20px;
+  border: 2px solid #fff;
+  text-align: center;
+}
+
+.modal img {
+  width: 150px;
+  height: 150px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
