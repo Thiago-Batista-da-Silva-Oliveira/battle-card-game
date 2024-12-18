@@ -10,6 +10,7 @@ import cardBack from './assets/cards/cardBack.webp'
 import { BiHeart } from 'react-icons/bi';
 import Evy from './assets/cards/evy.webp'
 import Yona from './assets/cards/yona.webp'
+import Mimic from './assets/cards/mimic.webp'
 
 
 Modal.setAppElement('#root');
@@ -70,6 +71,14 @@ function App() {
       attack: 8,
       defense: 5,
       description: 'Uma guerreira que ataca com uma espada mágica.',
+    },
+    {
+      id: 5,
+      elixir: 4,
+      image: Mimic,
+      attack: 2,
+      defense: 2,
+      description: 'Copia as últimas duas cartas que seu oponente jogou.',
     },
   ];
   return (
