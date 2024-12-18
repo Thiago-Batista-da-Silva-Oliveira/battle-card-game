@@ -11,6 +11,7 @@ import { BiHeart } from 'react-icons/bi';
 import Evy from './assets/cards/evy.webp'
 import Yona from './assets/cards/yona.webp'
 import Mimic from './assets/cards/mimic.webp'
+import ShieldMan from './assets/cards/shieldMan.webp'
 
 
 Modal.setAppElement('#root');
@@ -79,6 +80,14 @@ function App() {
       attack: 2,
       defense: 2,
       description: 'Copia as últimas duas cartas que seu oponente jogou.',
+    },
+    {
+      id: 6,
+      elixir: 2,
+      image: ShieldMan,
+      attack: 1,
+      defense: 6,
+      description: 'Um guerreiro que defende com um escudo.',
     },
   ];
   return (
