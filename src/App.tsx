@@ -8,6 +8,8 @@ import retiredPalading from './assets/cards/retiredPaladin.webp'
 import blueDragon from './assets/cards/blueDragon.webp'
 import cardBack from './assets/cards/cardBack.webp'
 import { BiHeart } from 'react-icons/bi';
+import Evy from './assets/cards/evy.webp'
+import Yona from './assets/cards/yona.webp'
 
 
 Modal.setAppElement('#root');
@@ -52,6 +54,22 @@ function App() {
       attack: 8,
       defense: 9,
       description: 'Lendário dragão azul que cospe fogo.',
+    },
+    {
+      id: 3,
+      elixir: 4,
+      image: Evy,
+      attack: 3,
+      defense: 5,
+      description: 'Uma feiticeira misteriosa que cura um aliado em 4 de vida no início de cada turno seu.',
+    },
+    {
+      id: 4,
+      elixir: 6,
+      image: Yona,
+      attack: 8,
+      defense: 5,
+      description: 'Uma guerreira que ataca com uma espada mágica.',
     },
   ];
   return (
