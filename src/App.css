@@ -88,6 +88,13 @@ body, html {
   border: 2px solid #fff;
 }
 
+@media screen and (max-width: 768px) {
+  .card-thumbnail img {
+    width: 25px;
+    height: 50px;
+  }  
+}
+
 .modal {
   width: 300px;
   margin: auto;
