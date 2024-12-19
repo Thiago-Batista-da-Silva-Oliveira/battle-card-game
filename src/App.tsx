@@ -211,6 +211,7 @@ function App() {
       const activeCard = cardsInHand.find((card) => card.id === active.id);
       if (activeCard) {
         if (over.id === "trap" && activeCard.type !== "trap") {
+          alert("Você não pode jogar esse tipo de carta aqui.");
           return;
         }
         if (over.id === "attack") {
