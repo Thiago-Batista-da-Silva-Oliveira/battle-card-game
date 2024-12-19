@@ -12,6 +12,8 @@ import Evy from './assets/cards/evy.webp'
 import Yona from './assets/cards/yona.webp'
 import Mimic from './assets/cards/mimic.webp'
 import ShieldMan from './assets/cards/shieldMan.webp'
+import Hydra from './assets/cards/hydra.webp'
+import { DndContext, DragEndEvent, useDraggable, useDroppable } from '@dnd-kit/core';
 
 
 Modal.setAppElement('#root');
@@ -23,6 +25,57 @@ interface ICard {
   attack: number;
   defense: number;
   description: string;
+}
+
+interface IZone {
+  id: string;
+  children: React.ReactNode;
+}
+
+interface ICardProps {
+  card: ICard;
+}
+
+function Card({ card }: ICardProps) {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: card.id,
+  });
+
+  const style = {
+    transform: transform
+      ? `translate(${transform.x}px, ${transform.y}px)`
+      : undefined,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="card-thumbnail"
+      {...listeners}
+      {...attributes}
+    >
+      <img src={card.image} alt={`Carta ${card.id}`} />
+    </div>
+  );
+}
+
+function Zone({ id, children }: IZone) {
+  const { setNodeRef, isOver } = useDroppable({
+    id,
+  });
+
+  const style = {
+    backgroundColor: isOver ? "lightblue" : "transparent",
+    padding: "1rem",
+    border: "1px dashed #ccc",
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} className={`zone ${id}-zone`}>
+      {children}
+    </div>
+  );
 }
 
 
@@ -38,6 +91,15 @@ function App() {
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedCard(null);
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over) {
+      console.log(`Card ${active.id} dropped in ${over.id}`);
+      // Adicione lógica para atualizar o estado ou mover a carta
+    }
   };
 
   const cards = [
@@ -89,11 +151,20 @@ function App() {
       defense: 6,
       description: 'Um guerreiro que defende com um escudo.',
     },
+    {
+      id: 7,
+      elixir: 9,
+      image: Hydra,
+      attack: 9,
+      defense: 9,
+      description: 'Destrua um inimigo com menos ataque.',
+    },
   ];
   return (
+    <DndContext onDragEnd={(e) => handleDragEnd(e)}>
     <div className="game-board">
-  <div className="opponent-area">
-  <div className="zone hand-zone">
+     <div className="opponent-area">
+     <div className="zone hand-zone">
       <div className="hand-header">
         <FaFistRaised className="icon" />
         <div className="life-points">
@@ -135,18 +206,24 @@ function App() {
 
   <div className="player-area">
     <div className="zone defense-zone">
+    <Zone id="defense">
       <FaShieldAlt className="icon" />
       <span>Defesa</span>
+    </Zone>
     </div>
 
     <div className="zone attack-zone">
+    <Zone id="attack">
       <GiSwordBrandish className="icon" />
       <span>Ataque</span>
+    </Zone>
     </div>
 
     <div className="zone trap-zone">
+    <Zone id="trap">
       <GiTrapMask className="icon" />
       <span>Armadilhas</span>
+    </Zone>
     </div>
 
     <div className="zone hand-zone">
@@ -168,7 +245,7 @@ function App() {
             className="card-thumbnail"
             onClick={() => openModal(card)}
           >
-            <img src={card.image} alt={`Carta ${card.id}`} />
+           <Card card={card} />
           </div>
         ))}
       </div>
@@ -197,6 +274,7 @@ function App() {
         )}
       </Modal>
     </div>
+    </DndContext>
   );
 }
 
